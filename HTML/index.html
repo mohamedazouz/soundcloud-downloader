@@ -59,6 +59,49 @@
             	<input type="text" placeholder="https://soundcloud.com/*">
                 <input type="submit" value="">
             </div>
+            <div class="loader" style="text-align:center; display: none;"><img src="images/loaderAnimationHTML.gif" alt=""></div>
+            <div class="results" style="display: none;">
+            	
+            	<div class="track">
+            	Track Name: <span> نسم علينا الهوا - فيروز</span>
+                <a href="" class="btn">Download</a>
+            </div>
+            
+            <label>Related Tracks</label>
+            
+            <table width="700" border="0" align="center">
+              <tr>
+                <th scope="col">Track Name</th>
+                <th scope="col">Download</th>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+              <tr>
+                <td>This Is How We Do (Remix).mp3</td>
+                <td><a href="#" class="arrow"></a></td>
+              </tr>
+            </table>
+            </div>
+            
+            
         </article>
         
     </section>
@@ -68,7 +111,18 @@
     </footer>
     
     <script src="js/jquery-1.10.2.min.js"></script>
+	    
+        
     <script>
+		$('tr:even td').css('background', '#e4e4e4');
+		$('.download input[type=submit]').click(function(){
+			$('.loader').show();
+			setTimeout(function(){
+				$('.results').fadeIn(300);
+				$('.loader').hide();
+			},3000);	
+		});
+		
     </script>
 </body>
 </html>
