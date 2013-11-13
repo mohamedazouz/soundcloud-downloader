@@ -17,7 +17,7 @@
             <meta name="author" content="Mohamed Azouz">
             <meta property="og:title" content="SoundCloud Tracks Downloader" />
             <meta property="og:image" content="http://mohamedazouz.kd.io/soundcloud_download_by_mohamed_azouz.png" />
-            <meta property="og:description" content="SoundCloud Tracks Downloader By Mohamed Azouz ( Mohamedaliazouz@gmail.com )" />
+            <meta property="og:description" content="SoundCloud Tracks Downloader .. send your feedback on (info.soundcloud.downloader@gmail.com)" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link rel="stylesheet" media="all" href="css/style.css" />
             <!--[if lt IE 9]>
