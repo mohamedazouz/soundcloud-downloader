@@ -20,47 +20,31 @@ DownloaderClass = function() {
             if (!msg) {
                 for (var i = 0; i < result.length; i++) {
                     if (i == 0) {
-                        out += "<tr>";
-                        out += "<td> Track Name</td>";
-                        out += "<td>";
-                        out += "<a href='" + result[i].uri + "' target='_blank'>";
+
+                        out += "Track Name:";
+                        out += "<a href='" + result[i].uri + "' target='_blank'> ";
                         out += result[i].title;
                         out += "</a>";
-                        out += "</td>";
-                        out += "</tr>";
-                        out += "<tr>";
-                        out += "<td> User Name</td>";
-                        out += "<td>";
-                        out += "<a href='" + result[i].user.permalink + "' target='_blank'>";
-                        out += result[i].user.name;
+                        out += "<a  class='btn' href='" + result[i].streamURL + "' target='_blank'>";
+                        out += "Download";
                         out += "</a>";
-                        out += "</td>";
-                        out += "</tr>";
-                        out += "<tr>";
-                        out += "<td> DOWNLOAD LINK</td>";
-                        out += "<td>";
-                        out += "<a href='" + result[i].streamURL + "' target='_blank'>";
-                        out += "DOWNLOAD LINK";
-                        out += "</a>";
-                        out += "</td>";
-                        out += "</tr>";
                         $("#first_Track").html(out);
                         out = "";
                     } else {
+
                         out += "<tr>"
                         out += "<td>";
-                        out += "<a href='" + result[i].uri + "' target='_blank'>";
+                        //out += "<a href='" + result[i].uri + "' target='_blank'>";
                         out += result[i].title;
-                        out += "</a>";
+                        //out += "</a>";
+                        out += "</td>";
+//                        out += "<td>";
+//                        out += "<a href='" + result[i].user.permalink + "' target='_blank'>";
+//                        out += result[i].user.name;
+//                        out += "</a>";
                         out += "</td>";
                         out += "<td>";
-                        out += "<a href='" + result[i].user.permalink + "' target='_blank'>";
-                        out += result[i].user.name;
-                        out += "</a>";
-                        out += "</td>";
-                        out += "<td>";
-                        out += "<a href='" + result[i].streamURL + "' target='_blank'>";
-                        out += "DOWNLOAD LINK";
+                        out += "<a href='" + result[i].streamURL + "' class='arrow' target='_blank'>";
                         out += "</a>";
                         out += "</td>";
                         out += "</tr>";
@@ -75,7 +59,7 @@ DownloaderClass = function() {
         }
     };
     $(function() {
-
+        $('tr:even td').css('background', '#e4e4e4');
         $("#formSubmit").submit(function() {
             return false;
         });
