@@ -57,11 +57,11 @@ img {
 /* #Selection
 ================================================== */
 ::selection {
-	background: rgb(180, 248, 35);
+	background: #292929;
 	color: #FFF;
 }
 ::-moz-selection {
- background: rgb(180, 248, 35);
+ background: #292929;
  color: #FFF;
 }
 /* #Clearing
