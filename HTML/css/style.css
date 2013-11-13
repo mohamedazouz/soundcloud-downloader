@@ -206,7 +206,7 @@ body {
 	font-size: 18px;
 	color: #e08d2d;
 }
-.track span {
+.track a {
 	color: #292929;
 }
 a.btn {
