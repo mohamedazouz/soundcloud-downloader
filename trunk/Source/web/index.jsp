@@ -16,7 +16,7 @@
             <meta name="keywords" content="SoundCloud,tracks">
             <meta name="author" content="Mohamed Azouz">
             <meta property="og:title" content="SoundCloud Tracks Downloader" />
-            <meta property="og:image" content="http://mohamedazouz.kd.io/soundcloud_download_by_mohamed_azouz.png" />
+            <meta property="og:image" content="http://mohamedazouz.kd.io:8080/SoundCloud_Downloader/images/facebook_image.jpg" />
             <meta property="og:description" content="SoundCloud Tracks Downloader .. send your feedback on (info.soundcloud.downloader@gmail.com)" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link rel="stylesheet" media="all" href="css/style.css" />
@@ -33,7 +33,7 @@
         </head>
         <body>
             <header class="responsive-header">
-                <a href="#" class="responsive-logo">
+                <a href="index.jsp" class="responsive-logo">
                     <span>soundCloud Downloader</span>
                 </a>
                 <div class="social-icons">
@@ -57,7 +57,7 @@
         <section class="black-bar">
             <article class="container">
                 <h1 class="logo">
-                    <a href="#">
+                    <a href="index.jsp">
                         SOUNDCLOUD DOWNLOADER
                         <span></span>
                     </a>
