@@ -7,6 +7,18 @@
     <servlet>
         <servlet-name>download</servlet-name>
         <servlet-class>parser.controller.download</servlet-class>
+        <init-param>
+            <param-name>propFile</param-name>
+            <param-value>/WEB-INF/properties/jdbc.properties</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>parser.controller.test</servlet-class>
+        <init-param>
+            <param-name>propFile</param-name>
+            <param-value>/WEB-INF/properties/jdbc.properties</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>tt</servlet-name>
@@ -15,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>download</servlet-name>
         <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

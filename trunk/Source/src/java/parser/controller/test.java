@@ -4,40 +4,41 @@
  */
 package parser.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-import com.mongodb.DB;
-import com.mongodb.MongoClient;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import parser.db.DBConnector;
 import parser.db.conf.ConfigurationFile;
-import parser.soundcloud.SoundCloudPageParser;
+import parser.model.Track;
 
 /**
  *
  * @author mohamed.azouz
  */
-public class download extends HttpServlet {
+public class test extends HttpServlet {
 
     private DBConnector dbConnector;
     private ConfigurationFile configurationFile;
+
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         String propFile = config.getInitParameter("propFile");
         try {
+            System.out.println(propFile);
+            System.out.println(this.getServletContext().getRealPath(propFile));
+
+
             configurationFile = new ConfigurationFile(this.getServletContext().getRealPath(propFile));
+
             dbConnector = DBConnector.getInstance(configurationFile);
         } catch (UnknownHostException ex) {
             System.out.println("UNKNOWN HOST");
@@ -58,39 +59,22 @@ public class download extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        JsonObject responseObj = new JsonObject();
-        int reponseCode = 500;
-        JsonArray reponseData = null;
-        String url = null;
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
-            if (request.getParameter("trackurl") != null || request.getParameter("trackurl").equals("")) {
-                url = request.getParameter("trackurl");
-            } else {
-                throw new Exception("URL NOT FOUND");
-            }
-            if (url.contains("https")) {
-                url = url.substring(url.lastIndexOf("https") + "https".length(), url.length());
-                url = "http" + url;
-            }
-            SoundCloudPageParser parser = new SoundCloudPageParser(url);
-            parser.getDownloadURLMultiTrack();
-            reponseData = parser.getJsonTracks();
-            try {
-                dbConnector.insertNewTrack(parser.getTrackObject());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                e.fillInStackTrace();
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet test</title>");
+            out.println("</head>");
+            out.println("<body>");
             
-            reponseCode = 200;
-        } catch (Exception ex) {
-            reponseCode = 500;
-            ex.fillInStackTrace();
+            out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         } finally {
-            responseObj.addProperty("code", String.valueOf(reponseCode));
-            responseObj.add("data", reponseData);
-            response.getWriter().write(responseObj.toString());
+            out.close();
         }
     }
 
@@ -107,22 +91,7 @@ public class download extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>404</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>PAGE NOT FOUND!</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        processRequest(request, response);
     }
 
     /**

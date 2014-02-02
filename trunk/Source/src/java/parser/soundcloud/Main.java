@@ -4,8 +4,11 @@
  */
 package parser.soundcloud;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import parser.model.Track;
+import parser.model.UserTrack;
 
 /**
  *
@@ -24,19 +27,35 @@ public class Main {
         //url = "https://soundcloud.com/ahmed-hamdy-2-1/sets/drugs";
         //url = "https://soundcloud.com/afify";
         try {
-            if (url.contains("https")) {
-                url = url.substring(url.lastIndexOf("https") + "https".length(), url.length());
-                url = "http" + url;
-            }
-            SoundCloudPageParser parser = new SoundCloudPageParser(url);
-            parser.getDownloadURLMultiTrack();
-//            if (url.contains("sets")) {
-//                parser.getDownloadURLMultiTrack();
-//            } else {
-//                parser.getDownloadURLSingleTrack();
-//            }
-            reponseData = parser.getJsonTracks();
-            reponseCode = 200;
+            /* if (url.contains("https")) {
+             url = url.substring(url.lastIndexOf("https") + "https".length(), url.length());
+             url = "http" + url;
+             }
+             SoundCloudPageParser parser = new SoundCloudPageParser(url);
+             parser.getDownloadURLMultiTrack();
+             //            if (url.contains("sets")) {
+             //                parser.getDownloadURLMultiTrack();
+             //            } else {
+             //                parser.getDownloadURLSingleTrack();
+             //            }
+             reponseData = parser.getJsonTracks();
+             reponseCode = 200;*/
+            Gson gson = new Gson();
+
+            Track track = new Track();
+            
+            track.setTitle("HELLO");
+            track.setUri("LLLA");
+            track.setId("asdasd");
+            
+            UserTrack userTrack=new UserTrack();
+            userTrack.setName("Azouz");
+            userTrack.setPermalink("kjaksjdkajsdh");
+            
+            
+            String json = gson.toJson(track);
+            System.out.println(json);
+            
             //System.out.println(parser.getDirectDownloadLink(parser.getDownloadURLSingleTrack()));
         } catch (Exception ex) {
             reponseCode = 500;

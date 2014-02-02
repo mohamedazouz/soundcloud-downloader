@@ -10,12 +10,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.mongodb.util.JSON;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import parser.db.DBConnector;
 import parser.model.Track;
 import parser.model.UserTrack;
 
@@ -28,12 +30,15 @@ public class SoundCloudPageParser {
     private String pageUrl;
     private Gson gson = new Gson();
     private JsonArray jsonTracks;
+    private JsonObject trackObject;
+    private boolean firstTrack = false;
     private final String SOUDNCLOUD_DOWNLOAD_LINK = "https://api.soundcloud.com/i1/tracks/";
     private final String SOUDNCLOUD_API_CREDENTIALS_LINK = "/streams?client_id=b45b1aa10f1ac2941910a7f0d10f8e28&app_version=ec560e43";
 
     public SoundCloudPageParser(String pageUrl) {
         jsonTracks = new JsonArray();
         this.pageUrl = pageUrl;
+        trackObject = new JsonObject();
     }
 
     private String generateJsonDownloadLink(String id) {
@@ -56,8 +61,8 @@ public class SoundCloudPageParser {
     }
 
     public void getDownloadURLMultiTrack() throws IOException {
-        System.out.println(this.getPageUrl());
         URL url = new URL(this.getPageUrl());
+        getTrackObject().addProperty("track_url", this.getPageUrl());
         Scanner sc = new Scanner(url.openStream());
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
@@ -65,6 +70,7 @@ public class SoundCloudPageParser {
                 this.addNewElement(this.extractStreamURL(this.extractJsonObj(line)));
             }
         }
+        getTrackObject().add("track_result", this.getJsonTracks());
     }
 
     private void addNewElement(Track track) {
@@ -81,9 +87,9 @@ public class SoundCloudPageParser {
         while (sc.hasNextLine()) {
             builder.append(sc.nextLine());
         }
-        
+
         JsonObject trackObj = new JsonParser().parse(builder.toString()).getAsJsonObject();
-        
+
         return trackObj.get("rtmp_mp3_128_url").getAsString();
     }
 
@@ -102,6 +108,9 @@ public class SoundCloudPageParser {
         user.setPermalink(trackObj.get("user").getAsJsonObject().get("permalink").getAsString());
         track.setUser(user);
         track.setStreamURL(trackObj.get("streamUrl").getAsString());
+        if (!firstTrack) {
+            getTrackObject().add("track_info", gson.toJsonTree(track));
+        }
         return track;
     }
 
@@ -130,5 +139,12 @@ public class SoundCloudPageParser {
      */
     public JsonArray getJsonTracks() {
         return jsonTracks;
+    }
+
+    /**
+     * @return the trackObject
+     */
+    public JsonObject getTrackObject() {
+        return trackObject;
     }
 }
