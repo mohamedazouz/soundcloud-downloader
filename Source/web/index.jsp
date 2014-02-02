@@ -70,48 +70,6 @@
                 </div>
             </article>
         </section>
-
-<!--        <form id="formSubmit">
-            <div id="url-input">					
-                <label for="url"> 
-                    Put link here
-                </label>
-                <input type="text" name="track_url" id="url" class="textInput" placeholder="https://soundcloud.com/*">
-            </div>
-
-            <button id="track_url">
-                Download
-            </button>
-        </form>
-
-        <br/><br/>
-
-
-        <div  id="loading" style="display: none;">
-            <span>Please Wait</span>
-
-            <img src="images/ajax-loader.gif"/>
-        </div>
-        <div class="clear"></div>
-
-        <div id="content"  style="display: none;">
-            <center>
-                <table id="first_Track">
-                </table>
-            </center>
-            <h3 style="margin-left: 260px;"> Related Tracks</h3>
-            <table id="tracksTable">
-                <thead>
-                    <tr>
-                        <td>Track Title</td>
-                        <td>User Name</td>
-                        <td>Download Link</td>
-                    </tr>
-                </thead>
-                <tbody id="download_area"></tbody>
-            </table>
-        </div>-->
-
         <section class="container">
             <article>
                 <div class="help-text">
@@ -149,3 +107,4 @@
         </footer>
     </body>
 </html>
+    
